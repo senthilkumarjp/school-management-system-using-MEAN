@@ -1,0 +1,51 @@
+<mat-toolbar color="primary">
+  <span>School Management</span>
+  <span class="spacer"></span>
+
+  <!-- <ul>
+  <mat-form-field appearance="fill">
+    <mat-select [(value)]="selected">Timetable
+      <mat-option value="option1" routerLink="class5">Student</mat-option>
+      <mat-option value="option2">Teacher</mat-option>
+    </mat-select>
+  </mat-form-field>
+  </ul> -->
+
+  <ul>
+    <li *ngIf="userIsAuthenticated">
+      <!-- <a routerLink="teacher1" mat-button routerLinkActive="mat-accent">Teacher Timetable</a> -->
+      <a mat-button [matMenuTriggerFor]="menuteacher">
+        Teacher Timetable
+
+      <mat-menu #menuteacher="matMenu">
+        <button mat-menu-item>none</button>
+        <button mat-menu-item routerLink="teacher1">teacher1</button>
+      </mat-menu>
+    </a>
+    </li>
+
+    <!-- <a routerLink="class5" mat-button routerLinkActive="mat-accent">Student Timetable</a> -->
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button [matMenuTriggerFor]="menu">Student Timetable</a>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>none</button>
+        <button mat-menu-item routerLink="class5">class 1 to 5</button>
+      </mat-menu>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <a routerLink="create" mat-button routerLinkActive="mat-accent">Student Admission Form</a>
+      </li>
+      <li *ngIf="userIsAuthenticated">
+      <a routerLink="list" mat-button routerLinkActive="mat-accent">List of Forms</a>
+    </li>
+    <li *ngIf="!userIsAuthenticated">
+      <a routerLink="login" mat-button routerLinkActive="mat-accent">Login</a>
+    </li>
+    <li *ngIf="!userIsAuthenticated">
+      <a routerLink="signup" mat-button routerLinkActive="mat-accent">SignUp</a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button (click)="onLogOut()">Logout</a>
+    </li>
+  </ul>
+</mat-toolbar>
